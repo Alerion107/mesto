@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Место</title>
+  <link rel="stylesheet" href="./pages/index.css">
 </head>
+
 <body>
   <div class="page">
     <header class="header">
-      <img src="./images/logo.svg">
+      <img src="./images/logo.svg" class="header__logo">
     </header>
+    
     <main class="content">
       <section class="profile">
         <div class="profile__content">  
-          <img src="./images/avatar.png" class="avatar" alt="аватар">
+          <img src="./images/avatar.png" class="profile__avatar" alt="аватар">
           <div class="profile__info">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <img src="./images/editBtn.svg" class="profile__edit-button">
@@ -23,6 +26,7 @@
           <button class="profile__add-button"></button>
         </div>
       </section>
+
       <section class="elements">
         <div class="element">
           <img src="./images/karachaevsk.png" class="element__pic" alt="Карачаевск">
@@ -68,6 +72,7 @@
         </div>
       </section>
     </main>
+    
     <footer class="footer">
       <p class="footer__content">© 2022 Mesto Russia</p>
     </footer>
