@@ -1,0 +1,10 @@
+.element__subscription {
+  display: flex;
+  padding: 25px 15px 31px 21px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  min-height: 79px;
+  box-sizing: border-box;
+}

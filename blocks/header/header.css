@@ -1,0 +1,18 @@
+.header {
+  min-height: 74px;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.header::after {
+  content: "";
+  border-bottom: 1px solid #545454;
+  opacity: .7;
+  display: block;
+}
+
+@media screen and (max-width: 575px) {
+  .header{
+    min-height: 56px;
+  }
+}

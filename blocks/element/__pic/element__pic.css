@@ -1,0 +1,14 @@
+.element__pic {
+  width: 100%;
+  height: 282px;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+  overflow: hidden;
+  transition: opacity 0.5s ease-in;
+  /*display: block; нужен ли он переход к блочному элементу?*/ 
+}
+
+.element__pic:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
