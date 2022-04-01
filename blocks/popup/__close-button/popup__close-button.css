@@ -9,12 +9,21 @@
   border: none;
   width: 32px;
   height: 32px;
-  right: -42px;
-  top: -45px;
+  right: -38px;
+  top: -41px;
   transition: opacity 0.5s ease-in;
 }
 
 .popup__close-button:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+
+@media screen and (max-width: 575px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+    right: 0;
+    top: -38px;
+  }
 }
