@@ -5,7 +5,6 @@
   object-fit: cover;
   overflow: hidden;
   transition: opacity 0.5s ease-in;
-  /*display: block; нужен ли он переход к блочному элементу?*/ 
 }
 
 .element__pic:hover {
