@@ -3,7 +3,7 @@
   min-width: 320px;
   background-color: black;
   font-family: 'Inter', Arial, sans-serif;
-  padding: 45px 0 60px ;
+  padding: 45px 0 60px;
 }
 
 @media screen and (max-width: 899px) {
