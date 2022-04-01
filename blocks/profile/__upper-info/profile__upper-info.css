@@ -1,5 +1,10 @@
 .profile__upper-info {
   display: flex;
-  justify-content: center;
   align-items: baseline;
+}
+
+@media screen and (max-width: 575px) {
+  .profile__upper-info {
+    justify-content: center;
+  }
 }
