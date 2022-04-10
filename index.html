@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
   <link rel="stylesheet" href="./pages/index.css">
+  <script defer src="scripts/index.js"></script>
 </head>
 
 <body>
@@ -30,13 +31,14 @@
       </section>
 
       <section class="elements">
-        <article class="element">
+        <!--article class="element">
           <img src="./images/karachaevsk.png" class="element__pic" alt="Карачаевск">
+          <button class="element__delete-button" type="button" aria-label="Удалить"></button>
           <div class="element__subscription">
             <h2 class="element__title">Карачаевск</h2>
             <button class="element__like-button" type="button" aria-label="Лайк"></button>    
           </div>
-        </article>
+        </!--article>
         <article class="element">
           <img src="./images/elbrus.png" class="element__pic" alt="Эльбрус">
           <div class="element__subscription">
@@ -65,13 +67,13 @@
             <button class="element__like-button" type="button" aria-label="Лайк"></button>    
           </div>
         </article>
-        <article class="element">
+        <article-- class="element">
           <img src="./images/karachaevsk.png" class="element__pic" alt="Карачаево-Черкесия">
           <div class="element__subscription">
             <h2 class="element__title">Карачаево-Черкесия</h2>
             <button class="element__like-button" type="button" aria-label="Лайк"></button>    
           </div>
-        </article>
+        </article-->
       </section>
     </main>
     
@@ -92,6 +94,17 @@
     </div>
 
   </div>
-<script src="scripts/index.js"></script>  
+
+<template class="element-template">
+  <article class="element">
+    <img src="#" class="element__pic" alt="#">
+    <button class="element__delete-button" type="button" aria-label="Удалить"></button>
+    <div class="element__subscription">
+      <h2 class="element__title"></h2>
+      <button class="element__like-button" type="button" aria-label="Лайк"></button>    
+    </div>
+  </article>
+</template>
+
 </body>
 </html>
