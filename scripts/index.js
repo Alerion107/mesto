@@ -26,38 +26,50 @@ const initialCards = [
 ];
 
 let editButton = document.querySelector('.profile__edit-button');
-let popupWindow = document.querySelector('.popup');
-let popupCloseBtn = document.querySelector('.popup__close-button');
+let popupEditWindow = document.querySelector('.popup_type_edit-profile');
+let editCloseBtn = document.querySelector('.popup__close-button');
 let profileName = document.querySelector('.profile__title');
 let profileActivity = document.querySelector('.profile__subtitle');
 let popupName = document.querySelector('.popup__input_type_name');
 let popupActivity = document.querySelector('.popup__input_type_activity');
 let popupForm = document.querySelector('.popup__form');
 
+let popupAddWindow = document.querySelector('.popup_type_add-card');
+let addButton = document.querySelector('.profile__add-button');
+let addCloseBtn = document.querySelector('.popup__close-button');
+
 let listOfCards = document.querySelector('.elements');
 let template = document.querySelector('.element-template');
 
-function openPopupWindow() {
-  popupWindow.classList.add('popup_is-opened');
-  popupName.value = profileName.textContent;
-  popupActivity.value = profileActivity.textContent;
+function openPopupWindow(popupName) {
+  popupName.classList.add('popup_is-opened');
 }
 
-function closePopupWindow(){
-  popupWindow.classList.remove('popup_is-opened');
+function closePopupWindow(popupName) {
+  popupName.classList.remove('popup_is-opened');
+}
+
+function popupEdit() {
+  popupName.value = profileName.textContent;
+  popupActivity.value = profileActivity.textContent;
+  openPopupWindow(popupEditWindow);
+}
+
+function formSubmitEdit(evt) {
+  evt.preventDefault();
+  profileName.textContent = popupName.value;
+  profileActivity.textContent = popupActivity.value;
+  closePopupWindow(popupEditWindow);
+}
+
+function popupAdd() {
+  openPopupWindow(popupAddWindow);
 }
 
 function onOverlayClick(event) {
   if (event.target===event.currentTarget) {
     closePopupWindow();
   }
-}
-
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  profileName.textContent = popupName.value;
-  profileActivity.textContent = popupActivity.value;
-  closePopupWindow();
 }
 
 //блок про темплейты
@@ -69,16 +81,30 @@ function addElement() {
 function getElement(item) {
   let getElementTemplate = template.content.cloneNode(true);
   let title = getElementTemplate.querySelector('.element__title');
-  title.textContent = item.name;
   let photo = getElementTemplate.querySelector('.element__pic');
+  let likeButton = getElementTemplate.querySelector('.element__like-button');
+  let deleteButton = getElementTemplate.querySelector('.element__delete-button');
+  title.textContent = item.name;
   photo.src = item.link;
+
+  likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('element__like-button_active'));
+  
+  deleteButton.addEventListener('click', deleteElement);
+
   return getElementTemplate;
 }
-//addElement();
+addElement();
+
+function deleteElement(evt) {
+  let card = evt.target.closest('.element');
+  card.remove();
+}
 
 // конеч блока про темплейты
 
-editButton.addEventListener('click', openPopupWindow);
-popupCloseBtn.addEventListener('click', closePopupWindow);
-popupWindow.addEventListener('click', onOverlayClick);
-popupForm.addEventListener('submit', formSubmitHandler);
+editButton.addEventListener('click', popupEdit);
+editCloseBtn.addEventListener('click', () => closePopupWindow(popupEditWindow));
+addButton.addEventListener('click', popupAdd);
+addCloseBtn.addEventListener('click', () => closePopupWindow(popupAddWindow));
+//popupWindow.addEventListener('click', onOverlayClick);
+popupForm.addEventListener('submit', formSubmitEdit);
