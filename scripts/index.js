@@ -26,17 +26,20 @@ const initialCards = [
 ];
 
 let editButton = document.querySelector('.profile__edit-button');
+let addButton = document.querySelector('.profile__add-button');
 let popupEditWindow = document.querySelector('.popup_type_edit-profile');
-let editCloseBtn = document.querySelector('.popup__close-button');
+let editCloseBtn = popupEditWindow.querySelector('.popup__close-button');
 let profileName = document.querySelector('.profile__title');
 let profileActivity = document.querySelector('.profile__subtitle');
-let popupName = document.querySelector('.popup__input_type_name');
-let popupActivity = document.querySelector('.popup__input_type_activity');
-let popupForm = document.querySelector('.popup__form');
+let popupName = popupEditWindow.querySelector('.popup__input_type_name');
+let popupActivity = popupEditWindow.querySelector('.popup__input_type_activity');
+let popupEditForm = popupEditWindow.querySelector('.popup__form');
 
 let popupAddWindow = document.querySelector('.popup_type_add-card');
-let addButton = document.querySelector('.profile__add-button');
-let addCloseBtn = document.querySelector('.popup__close-button');
+let addCloseBtn = popupAddWindow.querySelector('.popup__close-button');
+let popupAddCardName = popupAddWindow.querySelector('.popup__input_type_card-name');
+let popupAddCardLink = popupAddWindow.querySelector('.popup__input_type_card-link');
+let popupAddForm = popupAddWindow.querySelector('.popup__form');//Переделать название переменной
 
 let listOfCards = document.querySelector('.elements');
 let template = document.querySelector('.element-template');
@@ -64,12 +67,6 @@ function formSubmitEdit(evt) {
 
 function popupAdd() {
   openPopupWindow(popupAddWindow);
-}
-
-function onOverlayClick(event) {
-  if (event.target===event.currentTarget) {
-    closePopupWindow();
-  }
 }
 
 //блок про темплейты
@@ -100,11 +97,22 @@ function deleteElement(evt) {
   card.remove();
 }
 
+function addNewCard (name, link) {
+  listOfCards.prepend(getElement(name,link));
+  closePopupWindow(popupAddWindow);
+  popupAddForm.reset();
+}
+
+function addNewCardSubmit(evt) {
+  evt.preventDefault();
+  addNewCard(popupAddCardName.value, popupAddCardLink.value);
+}
+
 // конеч блока про темплейты
 
 editButton.addEventListener('click', popupEdit);
 editCloseBtn.addEventListener('click', () => closePopupWindow(popupEditWindow));
 addButton.addEventListener('click', popupAdd);
 addCloseBtn.addEventListener('click', () => closePopupWindow(popupAddWindow));
-//popupWindow.addEventListener('click', onOverlayClick);
-popupForm.addEventListener('submit', formSubmitEdit);
+popupEditForm.addEventListener('submit', formSubmitEdit);
+popupAddForm.addEventListener('submit', addNewCardSubmit);
