@@ -44,6 +44,11 @@ let popupAddForm = popupAddWindow.querySelector('.popup__form');//Передел
 let listOfCards = document.querySelector('.elements');
 let template = document.querySelector('.element-template');
 
+let popupCardWindow = document.querySelector('.popup_type_open-card');
+let popupCardElement = popupCardWindow.querySelector('.popup__card-image');
+let cardCloseBtn = popupCardWindow.querySelector('.popup__close-button');
+let popupCardTitle = popupCardWindow.querySelector('.popup__card-title');
+
 function openPopupWindow(popupName) {
   popupName.classList.add('popup_is-opened');
 }
@@ -88,6 +93,8 @@ function getElement(item) {
   
   deleteButton.addEventListener('click', deleteElement);
 
+  photo.addEventListener('click', () => openCard(item));
+
   return getElementTemplate;
 }
 addElement();
@@ -97,7 +104,14 @@ function deleteElement(evt) {
   card.remove();
 }
 
-function addNewCard (name, link) {
+function openCard(item) {
+  popupCardElement.src = item.link;
+  popupCardTitle.textContent = item.name;
+  popupCardElement.alt = item.name;
+  openPopupWindow(popupCardWindow);
+}
+
+/*function addNewCard (name, link) {
   listOfCards.prepend(getElement(name,link));
   closePopupWindow(popupAddWindow);
   popupAddForm.reset();
@@ -106,7 +120,7 @@ function addNewCard (name, link) {
 function addNewCardSubmit(evt) {
   evt.preventDefault();
   addNewCard(popupAddCardName.value, popupAddCardLink.value);
-}
+}  !!!РЕШИТЬ ТРАБЛ С ЗАГРУЗКОЙ ПИКЧ!!!!*/
 
 // конеч блока про темплейты
 
@@ -115,4 +129,5 @@ editCloseBtn.addEventListener('click', () => closePopupWindow(popupEditWindow));
 addButton.addEventListener('click', popupAdd);
 addCloseBtn.addEventListener('click', () => closePopupWindow(popupAddWindow));
 popupEditForm.addEventListener('submit', formSubmitEdit);
-popupAddForm.addEventListener('submit', addNewCardSubmit);
+//popupAddForm.addEventListener('submit', addNewCardSubmit);
+cardCloseBtn.addEventListener('click', () => closePopupWindow(popupCardWindow));
