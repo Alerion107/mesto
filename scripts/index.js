@@ -25,29 +25,29 @@ const initialCards = [
   }
 ];
 
-let editButton = document.querySelector('.profile__edit-button');
-let addButton = document.querySelector('.profile__add-button');
-let popupEditWindow = document.querySelector('.popup_type_edit-profile');
-let editCloseBtn = popupEditWindow.querySelector('.popup__close-button');
-let profileName = document.querySelector('.profile__title');
-let profileActivity = document.querySelector('.profile__subtitle');
-let popupName = popupEditWindow.querySelector('.popup__input_type_name');
-let popupActivity = popupEditWindow.querySelector('.popup__input_type_activity');
-let popupEditForm = popupEditWindow.querySelector('.popup__form');
+const listOfCards = document.querySelector('.elements');
+const template = document.querySelector('.element-template');
+const editButton = document.querySelector('.profile__edit-button');
+const addButton = document.querySelector('.profile__add-button');
+const profileName = document.querySelector('.profile__title');
+const profileActivity = document.querySelector('.profile__subtitle');
 
-let popupAddWindow = document.querySelector('.popup_type_add-card');
-let addCloseBtn = popupAddWindow.querySelector('.popup__close-button');
-let popupAddCardName = popupAddWindow.querySelector('.popup__input_type_card-name');
-let popupAddCardLink = popupAddWindow.querySelector('.popup__input_type_card-link');
-let popupAddForm = popupAddWindow.querySelector('.popup__form');//Переделать название переменной
+const popupEditWindow = document.querySelector('.popup_type_edit-profile');
+const popupName = popupEditWindow.querySelector('.popup__input_type_name');
+const editCloseBtn = popupEditWindow.querySelector('.popup__close-button');
+const popupActivity = popupEditWindow.querySelector('.popup__input_type_activity');
+const popupEditForm = popupEditWindow.querySelector('.popup__form');
 
-let listOfCards = document.querySelector('.elements');
-let template = document.querySelector('.element-template');
+const popupAddWindow = document.querySelector('.popup_type_add-card');
+const addCloseBtn = popupAddWindow.querySelector('.popup__close-button');
+const popupAddCardName = popupAddWindow.querySelector('.popup__input_type_card-name');
+const popupAddCardLink = popupAddWindow.querySelector('.popup__input_type_card-link');
+const popupAddForm = popupAddWindow.querySelector('.popup__form');//Переделать название переменной
 
-let popupCardWindow = document.querySelector('.popup_type_open-card');
-let popupCardElement = popupCardWindow.querySelector('.popup__card-image');
-let cardCloseBtn = popupCardWindow.querySelector('.popup__close-button');
-let popupCardTitle = popupCardWindow.querySelector('.popup__card-title');
+const popupCardWindow = document.querySelector('.popup_type_open-card');
+const popupCardElement = popupCardWindow.querySelector('.popup__card-image');
+const cardCloseBtn = popupCardWindow.querySelector('.popup__close-button');
+const popupCardTitle = popupCardWindow.querySelector('.popup__card-title');
 
 function openPopupWindow(popupName) {
   popupName.classList.add('popup_is-opened');
@@ -74,35 +74,32 @@ function popupAdd() {
   openPopupWindow(popupAddWindow);
 }
 
-//блок про темплейты
-function addElement() {
-  let card = initialCards.map(getElement);
-  listOfCards.append(...card);
-}
-
 function getElement(item) {
-  let getElementTemplate = template.content.cloneNode(true);
-  let title = getElementTemplate.querySelector('.element__title');
-  let photo = getElementTemplate.querySelector('.element__pic');
-  let likeButton = getElementTemplate.querySelector('.element__like-button');
-  let deleteButton = getElementTemplate.querySelector('.element__delete-button');
+  const getElementTemplate = template.content.cloneNode(true);
+  const title = getElementTemplate.querySelector('.element__title');
+  const photo = getElementTemplate.querySelector('.element__pic');
+  const deleteButton = getElementTemplate.querySelector('.element__delete-button');
+  const likeButton = getElementTemplate.querySelector('.element__like-button');
+  
   title.textContent = item.name;
   photo.src = item.link;
+  photo.alt = item.name;
+
+  deleteButton.addEventListener('click', (evt) => evt.target.parentElement.remove());
 
   likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('element__like-button_active'));
-  
-  deleteButton.addEventListener('click', deleteElement);
 
   photo.addEventListener('click', () => openCard(item));
 
   return getElementTemplate;
 }
-addElement();
 
-function deleteElement(evt) {
-  let card = evt.target.closest('.element');
-  card.remove();
+function addElement() {
+  const cards = initialCards.map(getElement);
+  listOfCards.append(...cards);
 }
+
+addElement();
 
 function openCard(item) {
   popupCardElement.src = item.link;
@@ -111,23 +108,18 @@ function openCard(item) {
   openPopupWindow(popupCardWindow);
 }
 
-/*function addNewCard (name, link) {
-  listOfCards.prepend(getElement(name,link));
+function addNewCard (evt) {
+  evt.preventDefault();
+  const newCard = getElement({name: popupAddCardName.value, link: popupAddCardLink.value});
+  listOfCards.prepend(newCard);
   closePopupWindow(popupAddWindow);
   popupAddForm.reset();
 }
-
-function addNewCardSubmit(evt) {
-  evt.preventDefault();
-  addNewCard(popupAddCardName.value, popupAddCardLink.value);
-}  !!!РЕШИТЬ ТРАБЛ С ЗАГРУЗКОЙ ПИКЧ!!!!*/
-
-// конеч блока про темплейты
 
 editButton.addEventListener('click', popupEdit);
 editCloseBtn.addEventListener('click', () => closePopupWindow(popupEditWindow));
 addButton.addEventListener('click', popupAdd);
 addCloseBtn.addEventListener('click', () => closePopupWindow(popupAddWindow));
 popupEditForm.addEventListener('submit', formSubmitEdit);
-//popupAddForm.addEventListener('submit', addNewCardSubmit);
+popupAddForm.addEventListener('submit', addNewCard);
 cardCloseBtn.addEventListener('click', () => closePopupWindow(popupCardWindow));
