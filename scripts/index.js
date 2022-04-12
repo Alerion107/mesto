@@ -27,26 +27,26 @@ const initialCards = [
 
 const listOfCards = document.querySelector('.elements');
 const template = document.querySelector('.element-template');
-const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
+const btnEditProfile = document.querySelector('.profile__edit-button');
+const btnAddCard = document.querySelector('.profile__add-button');
 const profileName = document.querySelector('.profile__title');
 const profileActivity = document.querySelector('.profile__subtitle');
 
 const popupEditWindow = document.querySelector('.popup_type_edit-profile');
 const popupName = popupEditWindow.querySelector('.popup__input_type_name');
-const editCloseBtn = popupEditWindow.querySelector('.popup__close-button');
+const btnEditClose = popupEditWindow.querySelector('.popup__close-button');
 const popupActivity = popupEditWindow.querySelector('.popup__input_type_activity');
 const popupEditForm = popupEditWindow.querySelector('.popup__form');
 
 const popupAddWindow = document.querySelector('.popup_type_add-card');
-const addCloseBtn = popupAddWindow.querySelector('.popup__close-button');
+const btnAddClose = popupAddWindow.querySelector('.popup__close-button');
 const popupAddCardName = popupAddWindow.querySelector('.popup__input_type_card-name');
 const popupAddCardLink = popupAddWindow.querySelector('.popup__input_type_card-link');
 const popupAddForm = popupAddWindow.querySelector('.popup__form');//Переделать название переменной
 
 const popupCardWindow = document.querySelector('.popup_type_open-card');
 const popupCardElement = popupCardWindow.querySelector('.popup__card-image');
-const cardCloseBtn = popupCardWindow.querySelector('.popup__close-button');
+const btnCardClose = popupCardWindow.querySelector('.popup__close-button');
 const popupCardTitle = popupCardWindow.querySelector('.popup__card-title');
 
 function openPopupWindow(popupName) {
@@ -57,49 +57,54 @@ function closePopupWindow(popupName) {
   popupName.classList.remove('popup_is-opened');
 }
 
-function popupEdit() {
+function handleOpenEditPopup() {
   popupName.value = profileName.textContent;
   popupActivity.value = profileActivity.textContent;
   openPopupWindow(popupEditWindow);
 }
 
-function formSubmitEdit(evt) {
+function handleSubmitEdit(evt) {
   evt.preventDefault();
   profileName.textContent = popupName.value;
   profileActivity.textContent = popupActivity.value;
   closePopupWindow(popupEditWindow);
 }
 
-function popupAdd() {
+function handleOpenAddPopup() {
   openPopupWindow(popupAddWindow);
 }
 
+function deleteCard(evt) {
+  const card = evt.target.closest('.element');
+  card.remove();
+}
+
 function getElement(item) {
-  const getElementTemplate = template.content.cloneNode(true);
-  const title = getElementTemplate.querySelector('.element__title');
-  const photo = getElementTemplate.querySelector('.element__pic');
-  const deleteButton = getElementTemplate.querySelector('.element__delete-button');
-  const likeButton = getElementTemplate.querySelector('.element__like-button');
+  const elementGetTemplate = template.content.cloneNode(true);
+  const title = elementGetTemplate.querySelector('.element__title');
+  const photo = elementGetTemplate.querySelector('.element__pic');
+  const buttonDelete = elementGetTemplate.querySelector('.element__delete-button');
+  const buttonLike = elementGetTemplate.querySelector('.element__like-button');
   
   title.textContent = item.name;
   photo.src = item.link;
   photo.alt = item.name;
 
-  deleteButton.addEventListener('click', (evt) => evt.target.parentElement.remove());
+  buttonDelete.addEventListener('click', deleteCard);
 
-  likeButton.addEventListener('click', (evt) => evt.target.classList.toggle('element__like-button_active'));
+  buttonLike.addEventListener('click', (evt) => evt.target.classList.toggle('element__like-button_active'));
 
   photo.addEventListener('click', () => openCard(item));
 
-  return getElementTemplate;
+  return elementGetTemplate;
 }
 
-function addElement() {
+function renderInitialCards() {
   const cards = initialCards.map(getElement);
   listOfCards.append(...cards);
 }
 
-addElement();
+renderInitialCards();
 
 function openCard(item) {
   popupCardElement.src = item.link;
@@ -116,10 +121,10 @@ function addNewCard (evt) {
   popupAddForm.reset();
 }
 
-editButton.addEventListener('click', popupEdit);
-editCloseBtn.addEventListener('click', () => closePopupWindow(popupEditWindow));
-addButton.addEventListener('click', popupAdd);
-addCloseBtn.addEventListener('click', () => closePopupWindow(popupAddWindow));
-popupEditForm.addEventListener('submit', formSubmitEdit);
+btnEditProfile.addEventListener('click', handleOpenEditPopup);
+btnEditClose.addEventListener('click', () => closePopupWindow(popupEditWindow));
+btnAddCard.addEventListener('click', handleOpenAddPopup);
+btnAddClose.addEventListener('click', () => closePopupWindow(popupAddWindow));
+popupEditForm.addEventListener('submit', handleSubmitEdit);
 popupAddForm.addEventListener('submit', addNewCard);
-cardCloseBtn.addEventListener('click', () => closePopupWindow(popupCardWindow));
+btnCardClose.addEventListener('click', () => closePopupWindow(popupCardWindow));
