@@ -42,7 +42,7 @@ const popupAddWindow = document.querySelector('.popup_type_add-card');
 const btnAddClose = popupAddWindow.querySelector('.popup__close-button');
 const popupAddCardName = popupAddWindow.querySelector('.popup__input_type_card-name');
 const popupAddCardLink = popupAddWindow.querySelector('.popup__input_type_card-link');
-const popupAddForm = popupAddWindow.querySelector('.popup__form');//Переделать название переменной
+const popupAddForm = popupAddWindow.querySelector('.popup__form');
 
 const popupCardWindow = document.querySelector('.popup_type_open-card');
 const popupCardElement = popupCardWindow.querySelector('.popup__card-image');
