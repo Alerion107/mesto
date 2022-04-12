@@ -22,7 +22,10 @@
           <div class="profile__info">
             <div class="profile__upper-info">
               <h1 class="profile__title">Жак-Ив Кусто</h1>
-              <button class="profile__edit-button" type="button" aria-label="Изменить профиль"></button>
+              <button class="profile__edit-button" 
+                type="button" 
+                aria-label="Изменить профиль">
+              </button>
             </div>
             <p class="profile__subtitle">Исследователь океана</p>
           </div>
@@ -42,9 +45,23 @@
       <div class="popup__content">
         <h3 class="popup__title">Редактировать профиль</h3>
         <form class="popup__form" name="editProfile">
-          <input type="text" placeholder="Имя" class="popup__input popup__input_type_name" name="name">
-          <input type="text" placeholder="О себе" class="popup__input popup__input_type_activity" name="about">
-          <button class="popup__submit-button" type="submit" aria-label="Сохранить изменения">Сохранить</button>
+          <input type="text" 
+            placeholder="Имя" 
+            class="popup__input popup__input_type_name" 
+            name="name"
+            required
+          >
+          <input 
+            type="text" 
+            placeholder="О себе" 
+            class="popup__input popup__input_type_activity" 
+            name="about"
+            required
+          >
+          <button 
+            class="popup__submit-button" 
+            type="submit" 
+            aria-label="Сохранить изменения">Сохранить</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
@@ -54,9 +71,24 @@
       <div class="popup__content">
         <h3 class="popup__title">Новое Место</h3>
         <form class="popup__form" name="newCard">
-          <input type="text" placeholder="Название" class="popup__input popup__input_type_card-name" name="name">
-          <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_type_card-link" name="link">
-          <button class="popup__submit-button" type="submit" aria-label="Сохранить изменения">Создать</button>
+          <input 
+            type="text" 
+            placeholder="Название" 
+            class="popup__input popup__input_type_card-name" 
+            name="name"
+            required
+          >
+          <input 
+            type="url" 
+            placeholder="Ссылка на картинку" 
+            class="popup__input popup__input_type_card-link" 
+            name="link"
+            required
+          >
+          <button 
+            class="popup__submit-button" 
+            type="submit" 
+            aria-label="Сохранить изменения">Создать</button>
         </form>
         <button class="popup__close-button" type="button" aria-label="Закрыть"></button>
       </div>
