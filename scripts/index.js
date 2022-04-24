@@ -51,10 +51,14 @@ const popupCardTitle = popupCardWindow.querySelector('.popup__card-title');
 
 function openPopupWindow(popupName) {
   popupName.classList.add('popup_is-opened');
+  popupName.addEventListener('click', handleOverlayClick);
+  document.addEventListener('keydown', handlePopupCloseEsc);
 }
 
 function closePopupWindow(popupName) {
   popupName.classList.remove('popup_is-opened');
+  popupName.removeEventListener('click', handleOverlayClick);
+  document.removeventListener('keydown', handlePopupCloseEsc);
 }
 
 function handleOpenEditPopup() {
@@ -119,6 +123,20 @@ function addNewCard (evt) {
   listOfCards.prepend(newCard);
   closePopupWindow(popupAddWindow);
   popupAddForm.reset();
+}
+
+//закрытие по клику на оверлей и кнопке esc
+function handleOverlayClick(evt) {
+  if (evt.target === evt.currentTarget) {
+    closePopupWindow(evt.target);
+  }
+}
+
+function handlePopupCloseEsc(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_is-opened');
+    closePopupWindow(openedPopup);
+  }
 }
 
 btnEditProfile.addEventListener('click', handleOpenEditPopup);
