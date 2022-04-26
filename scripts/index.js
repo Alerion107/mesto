@@ -58,7 +58,7 @@ function openPopupWindow(popupName) {
 function closePopupWindow(popupName) {
   popupName.classList.remove('popup_is-opened');
   popupName.removeEventListener('click', handleOverlayClick);
-  document.removeventListener('keydown', handlePopupCloseEsc);
+  document.removEventListener('keydown', handlePopupCloseEsc);
 }
 
 function handleOpenEditPopup() {
@@ -137,6 +137,11 @@ function handlePopupCloseEsc(evt) {
     const openedPopup = document.querySelector('.popup_is-opened');
     closePopupWindow(openedPopup);
   }
+}
+
+function disableSubmitButton(button) {
+  button.classList.add('popup__submit-button_disabled');
+  button.setAttribute('disabled', true);
 }
 
 btnEditProfile.addEventListener('click', handleOpenEditPopup);

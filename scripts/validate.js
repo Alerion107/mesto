@@ -1,25 +1,12 @@
-function showInputError(
-    formElement,
-    inputElement,
-    errorMessage,
-    inputErrorClass,
-    errorClass
-  ) {
+function showInputError(formElement, inputElement, errorMessage, inputErrorClass, errorClass) {
     const formError = formElement.querySelector(`#${inputElement.id}-error`);
-  
     inputElement.classList.add(`${inputErrorClass}`);
     formError.textContent = errorMessage;
     formError.classList.add(`${errorClass}`);
   }
   
-  function hideInputError(
-    formElement,
-    inputElement,
-    inputErrorClass,
-    errorClass
-  ) {
+  function hideInputError(formElement, inputElement, inputErrorClass, errorClass) {
     const formError = formElement.querySelector(`#${inputElement.id}-error`);
-  
     inputElement.classList.remove(`${inputErrorClass}`);
     formError.classList.remove(`${errorClass}`);
     formError.textContent = "";
