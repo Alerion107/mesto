@@ -58,7 +58,7 @@ function openPopupWindow(popupName) {
 function closePopupWindow(popupName) {
   popupName.classList.remove('popup_is-opened');
   popupName.removeEventListener('click', handleOverlayClick);
-  document.removEventListener('keydown', handlePopupCloseEsc);
+  document.removeEventListener('keydown', handlePopupCloseEsc);
 }
 
 function handleOpenEditPopup() {
