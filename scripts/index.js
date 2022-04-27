@@ -125,7 +125,6 @@ function addNewCard (evt) {
   popupAddForm.reset();
 }
 
-//закрытие по клику на оверлей и кнопке esc
 function handleOverlayClick(evt) {
   if (evt.target === evt.currentTarget) {
     closePopupWindow(evt.target);

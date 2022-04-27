@@ -26,6 +26,15 @@ function showInputError(config, formElement, inputElement, errorMessage) {
     });
   }
   
+  function toggleButtonState(config, inputList, buttonElement) {
+    if (hasInvalidInput(inputList)) {
+      buttonElement.classList.add(config.disabledButtonClass);
+      buttonElement.setAttribute('disabled', true);
+    } else {
+      buttonElement.classList.remove(config.disabledButtonClass);
+      buttonElement.removeAttribute('disabled');
+    }
+  }
   
   function setEventListeners(config, formElement) {
     const inputList = Array.from(
