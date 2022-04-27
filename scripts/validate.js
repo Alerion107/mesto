@@ -2,13 +2,11 @@ function showInputError(config, formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(config.inputErrorClass);
     errorElement.textContent = errorMessage;
-   /* errorElement.classList.add(config.errorClass);*/
   }
   
   function hideInputError(config, formElement, inputElement) {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(config.inputErrorClass);
-  /*  errorElement.classList.remove(config.errorClass);*/
     errorElement.textContent = "";
   }
   
@@ -28,15 +26,6 @@ function showInputError(config, formElement, inputElement, errorMessage) {
     });
   }
   
-  function toggleButtonState(config, inputList, buttonElement) {
-    if (hasInvalidInput(inputList)) {
-      buttonElement.classList.add(config.disabledButtonClass);
-      buttonElement.setAttribute('disabled', true);
-    } else {
-      buttonElement.classList.remove(config.disabledButtonClass);
-      buttonElement.removeAttribute('disabled');
-    }
-  }
   
   function setEventListeners(config, formElement) {
     const inputList = Array.from(
@@ -68,5 +57,4 @@ function showInputError(config, formElement, inputElement, errorMessage) {
     submitButtonSelector: ".popup__submit-button",
     disabledButtonClass: "popup__submit-button_disabled",
     inputErrorClass: "popup__input_invalid",
-    errorClass: "popup__input-error_visible",
   });
