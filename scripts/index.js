@@ -40,6 +40,7 @@ const popupEditForm = popupEditWindow.querySelector('.popup__form');
 
 const popupAddWindow = document.querySelector('.popup_type_add-card');
 const btnAddClose = popupAddWindow.querySelector('.popup__close-button');
+const btnAddSubmit = popupAddWindow.querySelector('.popup__submit-button');
 const popupAddCardName = popupAddWindow.querySelector('.popup__input_type_card-name');
 const popupAddCardLink = popupAddWindow.querySelector('.popup__input_type_card-link');
 const popupAddForm = popupAddWindow.querySelector('.popup__form');
@@ -121,6 +122,7 @@ function addNewCard (evt) {
   evt.preventDefault();
   const newCard = getElement({name: popupAddCardName.value, link: popupAddCardLink.value});
   listOfCards.prepend(newCard);
+  disableSubmitButton(btnAddSubmit);
   closePopupWindow(popupAddWindow);
   popupAddForm.reset();
 }
